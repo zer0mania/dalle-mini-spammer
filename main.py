@@ -19,7 +19,7 @@ while True:
 
     data = response.json()
 
-    count = 0
+    count = 1
     dir = prompt.replace(' ','_') + "_" + str(int(time.time()))
 
     os.mkdir(dir)
