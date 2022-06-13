@@ -21,7 +21,7 @@ while True:
     data = response.json()
 
     count = 1
-    dir = re.sub('[^A-Za-z0-9]+', '', prompt.replace(' ','_')) + "_" + str(int(time.time()))
+    dir = re.sub('[^A-Za-z0-9]+_', '', prompt.replace(' ','_')) + "_" + str(int(time.time()))
 
     os.mkdir(dir)
 
