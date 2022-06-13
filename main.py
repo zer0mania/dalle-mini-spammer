@@ -14,18 +14,18 @@ while True:
         response = requests.post(url, headers=headers, json=json)
         if "mega-1:v16" in response.text:
             break
+        print(response.text)
 
     data = response.json()
 
     count = 0
-    current_time = str(int(time.time()))
+    dir = prompt.replace(' ','_') + "_" + str(int(time.time()))
 
-    os.mkdir(current_time)
+    os.mkdir(dir)
 
     for i in data["images"]:
         img_data = i.replace('\n','')
-        with open(f"{current_time}/{count}.png", "wb") as fh:
+        with open(f"{dir}/{count}.png", "wb") as fh:
             fh.write(base64.b64decode(img_data))
             count = count + 1
-    print(f"Saved to {current_time}")
-    
+    print(f"Saved to {dir}")
