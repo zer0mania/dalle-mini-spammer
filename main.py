@@ -3,6 +3,7 @@ import base64
 import time
 import os
 import requests
+import re
 
 while True:
     prompt = input("Enter prompt: ")
@@ -20,13 +21,13 @@ while True:
     data = response.json()
 
     count = 1
-    dir = prompt.replace(' ','_') + "_" + str(int(time.time()))
+    dir = re.sub('[^A-Za-z0-9]+', '', prompt.replace(' ','_')) + "_" + str(int(time.time()))
 
     os.mkdir(dir)
 
     for i in data["images"]:
         img_data = i.replace('\n','')
-        with open(f"{dir}/{count}.jpeg", "wb") as fh:
+        with open(f"{dir}/{count}.png", "wb") as fh:
             fh.write(base64.b64decode(img_data))
             count = count + 1
     toc = time.perf_counter()
