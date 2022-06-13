@@ -26,7 +26,7 @@ while True:
 
     for i in data["images"]:
         img_data = i.replace('\n','')
-        with open(f"{dir}/{count}.png", "wb") as fh:
+        with open(f"{dir}/{count}.jpeg", "wb") as fh:
             fh.write(base64.b64decode(img_data))
             count = count + 1
     toc = time.perf_counter()
